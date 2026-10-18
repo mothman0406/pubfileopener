@@ -1,0 +1,42 @@
+name: Sync and build
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/sync.yml']
+  workflow_dispatch:
+    inputs:
+      url:
+        description: Bundle URL
+        required: true
+      sha256:
+        description: Bundle SHA-256
+        required: true
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch, verify and unpack the bundle
+        env:
+          BUNDLE_URL: ${{ inputs.url || 'https://litter.catbox.moe/u8d41q.tgz' }}
+          BUNDLE_SHA: ${{ inputs.sha256 || 'fe2854ff70247751b4c02bf2578a611edfe46a8e929c575cd03e4dc71e639cd9' }}
+        run: |
+          curl -fsSL --retry 3 -o /tmp/bundle.tgz "$BUNDLE_URL"
+          echo "$BUNDLE_SHA  /tmp/bundle.tgz" | sha256sum -c -
+          tar -xzf /tmp/bundle.tgz -C .
+      - name: Commit files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || { git commit -m "Sync site and sources"; git push; }
+      - name: Install headers for build configuration
+        run: sudo apt-get update && sudo apt-get install -y libmspub-dev librevenge-dev libicu-dev libboost-dev zlib1g-dev pkg-config
+      - name: Build the WebAssembly core and fetch browser libraries
+        run: bash core/build.sh
+      - name: Commit build output
+        run: |
+          git add site/core site/lib
+          git diff --cached --quiet || { git commit -m "Build core and browser libraries"; git push; }
