@@ -1,0 +1,27 @@
+:root{--bg:#f7f7f5;--fg:#1d1d1f;--muted:#5c5c66;--card:#fff;--line:#d4d4da;--accent:#1b5fd1;--accent-fg:#fff;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#141416;--fg:#ececf1;--muted:#a2a2ad;--card:#1e1e22;--line:#3a3a42;--accent:#7aa5ff;--accent-fg:#0b1020;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+a{color:var(--accent)}
+.top,main,.foot{max-width:960px;margin:0 auto;padding-left:20px;padding-right:20px}
+.top{padding-top:18px;padding-bottom:6px}
+.brand{font-weight:700;text-decoration:none;color:var(--fg)}
+main{padding-bottom:40px}
+h1{font-size:clamp(28px,4vw,42px);line-height:1.15;margin:24px 0 10px}
+.lead{font-size:18px;color:var(--muted);max-width:640px}
+.drop{display:flex;flex-direction:column;align-items:center;gap:4px;margin:24px 0 8px;padding:40px 20px;border:2px dashed var(--line);border-radius:14px;background:var(--card);cursor:pointer;text-align:center}
+.drop:hover,.drop.over,.drop:focus-within{border-color:var(--accent)}
+.drop strong{color:var(--accent);font-size:19px}
+.small{font-size:14px;color:var(--muted)}
+.status{min-height:1.5em;color:var(--muted)}
+.viewer{margin:16px 0 32px}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+.toolbar span{font-weight:600;margin-right:auto;overflow-wrap:anywhere}
+button{font:inherit;padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+#print{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.pages{overflow:hidden}
+.pubpage{box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.info h2{font-size:20px;margin:28px 0 6px}
+.info p,.info li{max-width:680px}
+.foot{padding-top:18px;padding-bottom:24px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+@media print{body{background:#fff}.top,.hero,.info,.foot,.toolbar{display:none!important}main{padding:0;max-width:none}.viewer{margin:0}.pages{overflow:visible}.pubpage{transform:none!important;margin:0!important;box-shadow:none;break-after:page}@page{margin:0}}

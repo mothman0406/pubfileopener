@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open .pub files online, free and private | PUB File Opener</title>
+<meta name="description" content="Open Microsoft Publisher (.pub) files in your browser without Publisher. View and print them free. Your files never leave your computer.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="top"><a class="brand" href="/">PUB File Opener</a></header>
+<main>
+<section class="hero">
+<h1>Open Publisher files in your browser</h1>
+<p class="lead">View and print Microsoft Publisher (.pub) files without Publisher. Free, no sign-up, and your files never leave your computer.</p>
+<label id="drop" class="drop">
+<input id="file" type="file" accept=".pub" hidden>
+<strong>Choose a .pub file</strong>
+<span>or drop it here</span>
+<span class="small">Works on Windows, Mac and Chromebook</span>
+</label>
+<p id="status" class="status" role="status" aria-live="polite"></p>
+</section>
+<section id="viewer" class="viewer" hidden>
+<div class="toolbar"><span id="docname"></span><button id="print" type="button">Print or save as PDF</button><button id="close" type="button">Open another file</button></div>
+<div id="pages" class="pages"></div>
+</section>
+<section class="info">
+<h2>Why won’t my .pub file open?</h2>
+<p>Microsoft retired Publisher in October 2026. Microsoft 365 no longer includes it, and Word, PowerPoint and Designer can’t open .pub files. PUB File Opener reads them directly in your browser.</p>
+<h2>Is it private?</h2>
+<p>Yes. Your file is read by code running on your own device. Nothing is uploaded, and there’s no account.</p>
+<h2>How do I save it as a PDF?</h2>
+<p>Open the file, choose Print or save as PDF, then pick Save as PDF as the printer.</p>
+<h2>Will every file look perfect?</h2>
+<p>Most newsletters, flyers, brochures and certificates open well. A few files with unusual graphics may show gaps. Batch conversion of whole folders and editable PowerPoint export are coming next.</p>
+</section>
+</main>
+<footer class="foot">
+<p>Microsoft Publisher is a trademark of Microsoft Corporation. PUB File Opener is not affiliated with Microsoft.</p>
+<p><a href="/privacy.html">Privacy</a> · <a href="/licenses.html">Open-source licenses</a> · <a href="https://github.com/mothman0406/pubfileopener">Source code</a></p>
+</footer>
+<script src="/lib/pako.min.js" defer></script>
+<script src="/lib/UTIF.js" defer></script>
+<script src="/lib/WMFJS.bundle.min.js" defer></script>
+<script src="/lib/EMFJS.bundle.min.js" defer></script>
+<script src="/renderer.js" defer></script>
+<script src="/core/pubcore.js" defer></script>
+<script src="/app.js" defer></script>
+</body>
+</html>
